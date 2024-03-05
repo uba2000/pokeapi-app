@@ -6,7 +6,12 @@ interface PokemonCardProps {
   cardFor: 'category' | 'pokemon'
 }
 
+/**
+ * This component represents a card for displaying Pokémon data. 
+ * It can be used to display either a Pokémon category or an individual Pokémon, depending on the cardFor prop.
+ */
 function PokemonCard({ data, cardFor }: PokemonCardProps) {
+  // Generate the route link based on the type of card (category or pokemon)
   const routeLink = useMemo(() => {
     let url = `/category/pokemon/${data.name}`;
 
@@ -24,6 +29,7 @@ function PokemonCard({ data, cardFor }: PokemonCardProps) {
   }, [cardFor, data])
 
   return (
+    // Link component to navigate to the specific category/pokemon
     <Link
       href={routeLink}
       className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 border-gray-500 hover:bg-gray-100 hover:dark:border-neutral-700 dark:border-neutral-900 hover:dark:bg-neutral-800/30"

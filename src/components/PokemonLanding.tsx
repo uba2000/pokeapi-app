@@ -12,18 +12,25 @@ interface PokemonLandingProps {
   listingFor: 'category' | 'pokemon';
 }
 
+/**
+ * This component is responsible for displaying a list of Pokémon or Pokémon categories. 
+ * It includes search functionality, pagination, and rendering Pokémon cards.
+ */
 function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: PokemonLandingProps) {
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Filter the list of Pokémon based on the search query
   const searchFilter = (pokemonList: any) => {
     return pokemonList.filter(
       (pokemon: any) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
   }
 
+  // Use pagination hook to handle pagination logic
   const { currentItems, currentPage, paginateNext, paginatePrev, totalPages }
     = usePagination({ data: searchFilter(pokemonList) });
 
+  // Filter the Pokémon list based on the search query
   const filteredPokemonList = pokemonList.filter(
     (pokemon: any) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
@@ -31,6 +38,7 @@ function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: Pokemo
   return (
     <>
       <div className="">
+        {/* Render search input only for Pokémon listing */}
         {listingFor === 'pokemon' && (
           <>
             <h3 className="text-2xl py-6 text-center">Search For Pokemón</h3>
@@ -47,8 +55,10 @@ function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: Pokemo
             </div>
           </>
         )}
+        {/* Display title based on the listing type */}
         <h3 className="text-3xl pt-12 pb-6 text-center">Pokemón {listingFor === 'category' ? 'Categories' : 'List'}</h3>
       </div>
+      {/* Render Pokémon cards if there are filtered results */}
       {filteredPokemonList.length > 0 && (
         <div className='lg:max-w-5xl lg:w-full'>
           <div className="mb-32 grid text-center lg:mb-0 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:text-left">
@@ -58,6 +68,7 @@ function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: Pokemo
               </Fragment>
             ))}
           </div>
+          {/* Render pagination controls if pagination is enabled */}
           {canPaginate && (
             <div className="flex justify-end items-center w-full gap-4 mt-4">
               <Button
@@ -81,6 +92,7 @@ function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: Pokemo
           )}
         </div>
       )}
+      {/* Render message if no Pokémon found */}
       {filteredPokemonList.length === 0 && (
         <div>
           <h3 className='text-3xl pt-12 pb-6 text-center'>No Pokemón {listingFor === 'category' ? 'in this category' : ''}</h3>

@@ -3,6 +3,10 @@
 import Image from 'next/image';
 import React from 'react'
 
+/**
+ * This component displays an image of a Pokémon. 
+ * It utilizes the Next.js Image component for optimized image loading and performance.
+ */
 function PokemonImage({ image, name }: { image: string; name: string }) {
   return (
     <Image

@@ -5,6 +5,10 @@ import { usePathname, useRouter } from 'next/navigation';
 import React from 'react'
 import Button from '../Button';
 
+/**
+ * The AppWrapper component serves as a layout wrapper for the application. 
+ * It includes navigation controls and a header displaying the title of the application.
+ */
 function AppWrapper({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const router = useRouter()
