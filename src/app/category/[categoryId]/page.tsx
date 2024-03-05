@@ -1,5 +1,6 @@
 import PokemonLanding from '@/components/PokemonLanding'
 import { getCategoryPokemonList } from '@/libs/actions/pokemonAction';
+import { CategoryPokemonList } from '@/types/common.type';
 import React, { useMemo } from 'react'
 
 // CategoryPage component
@@ -14,7 +15,7 @@ async function CategoryPage({ params }: { params: { categoryId: string } }) {
     <PokemonLanding
       listingFor='pokemon'
       canPaginate
-      pokemonList={pokemonList.map((p: any) => p.pokemon)}
+      pokemonList={pokemonList.map((p: CategoryPokemonList) => p.pokemon)}
     />
   )
 }

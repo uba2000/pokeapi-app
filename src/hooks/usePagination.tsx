@@ -1,7 +1,8 @@
+import type { Pokemon } from '@/types/common.type';
 import { useState } from 'react'
 
 interface UsePaginationProps {
-  data: any[];
+  data: Pokemon[];
   itemsPerPage?: number;
 }
 

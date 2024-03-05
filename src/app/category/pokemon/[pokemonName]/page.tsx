@@ -3,6 +3,7 @@ import clsx from 'clsx';
 
 import PokemonImage from '@/components/PokemonImage';
 import { getPokemon } from '@/libs/actions/pokemonAction';
+import { PokemonStatsData } from '@/types/common.type';
 
 // PokemonName component
 async function PokemonName({ params }: { params: { pokemonName: string } }) {
@@ -33,7 +34,7 @@ async function PokemonName({ params }: { params: { pokemonName: string } }) {
           </div>
           {/* Render Pokémon stats */}
           <div className="flex-col flex">
-            {pokemon.stats.map((statObj: any) => {
+            {pokemon.stats.map((statObj: PokemonStatsData) => {
               const statName = statObj.stat.name;
               const statValue = statObj.base_stat;
 

@@ -1,5 +1,6 @@
 'use server';
 
+import { CategoryPokemonList, PokemonData, PokemonType, PokemonTypeListResponse } from "@/types/common.type";
 import HttpClient from "../network/HttpClient";
 
 const httpClient = new HttpClient();
@@ -13,11 +14,11 @@ const httpClient = new HttpClient();
  * This function makes a GET request to the '/type' 
  * endpoint using the HttpClient instance and returns a list of Pokémon categories/types.
  */
-export async function getPokemonCategoryList() {
+export async function getPokemonCategoryList(): Promise<PokemonType[]> {
   try {
     const response = await httpClient.get('/type');
   
-    return response.data.results;
+    return (response.data as PokemonTypeListResponse).results;
   } catch (error) {
     throw error;
   }
@@ -27,7 +28,8 @@ export async function getPokemonCategoryList() {
  * This function makes a GET request to the '/type/:_id' endpoint using the HttpClient instance, 
  * where '_id' is the ID of the Pokémon category/type. It returns a list of Pokémon belonging to the specified category.
  */
-export async function getCategoryPokemonList(_id: string) {
+export async function getCategoryPokemonList(_id: string): Promise<CategoryPokemonList[]> {
+  // 
   try {
     const response = await httpClient.get(`/type/${_id}`);
   
@@ -41,7 +43,7 @@ export async function getCategoryPokemonList(_id: string) {
  * This function makes a GET request to the '/pokemon/:name' endpoint using the HttpClient instance, 
  * where ':name' is the name of the Pokémon. It returns information about the specified Pokémon.
  */
-export async function getPokemon(name: string) {
+export async function getPokemon(name: string): Promise<PokemonData> {
   try {
     const response = await httpClient.get(`/pokemon/${name}`);
   

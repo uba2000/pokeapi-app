@@ -1,8 +1,9 @@
+import type { Pokemon } from '@/types/common.type';
 import Link from 'next/link'
 import React, { useMemo } from 'react'
 
 interface PokemonCardProps {
-  data: any;
+  data: Pokemon;
   cardFor: 'category' | 'pokemon'
 }
 

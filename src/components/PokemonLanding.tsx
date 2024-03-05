@@ -5,9 +5,10 @@ import { Input } from './Input';
 import PokemonCard from './PokemonCard';
 import usePagination from '@/hooks/usePagination';
 import Button from './Button';
+import type { Pokemon } from '@/types/common.type';
 
 interface PokemonLandingProps {
-  pokemonList: any[];
+  pokemonList: Pokemon[];
   canPaginate?: boolean;
   listingFor: 'category' | 'pokemon';
 }
@@ -20,9 +21,9 @@ function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: Pokemo
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter the list of Pokémon based on the search query
-  const searchFilter = (pokemonList: any) => {
+  const searchFilter = (pokemonList: Pokemon[]) => {
     return pokemonList.filter(
-      (pokemon: any) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
+      (pokemon: Pokemon) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
     )
   }
 
@@ -32,7 +33,7 @@ function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: Pokemo
 
   // Filter the Pokémon list based on the search query
   const filteredPokemonList = pokemonList.filter(
-    (pokemon: any) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
+    (pokemon: Pokemon) => pokemon.name.toLowerCase().includes(searchQuery.toLowerCase())
   );
 
   return (
@@ -62,7 +63,7 @@ function PokemonLanding({ pokemonList, listingFor, canPaginate = false }: Pokemo
       {filteredPokemonList.length > 0 && (
         <div className='lg:max-w-5xl lg:w-full'>
           <div className="mb-32 grid text-center lg:mb-0 md:grid-cols-2 lg:grid-cols-3 gap-3 lg:text-left">
-            {(canPaginate ? currentItems : filteredPokemonList).map((pokemon: any) => (
+            {(canPaginate ? currentItems : filteredPokemonList).map((pokemon: Pokemon) => (
               <Fragment key={pokemon.name}>
                 <PokemonCard data={pokemon} cardFor={listingFor} />
               </Fragment>
