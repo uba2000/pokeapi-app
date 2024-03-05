@@ -4,6 +4,8 @@ import { Inter } from "next/font/google";
 import ProgressWrapper from "@/components/Wrapper/ProgressWrapper";
 
 import "./globals.css";
+import Link from "next/link";
+import AppWrapper from "@/components/Wrapper/AppWrapper";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,12 +23,9 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <ProgressWrapper>
-          <main className="flex min-h-screen flex-col items-center p-24">
-            <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
-              <h2 className="text-2xl font-bold">Pokemon Code Challenge</h2>
-            </div>
+          <AppWrapper>
             {children}
-          </main>
+          </AppWrapper>
         </ProgressWrapper>
       </body>
     </html>
