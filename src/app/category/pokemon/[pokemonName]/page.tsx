@@ -20,7 +20,11 @@ async function PokemonName({ params }: { params: { pokemonName: string } }) {
               name={pokemonName}
             />
           </div>
-          <h3 className='uppercase'>Weight: {pokemon.weight}</h3>
+          <div className='flex gap-3'>
+            <h3 className='uppercase'>Weight: {pokemon.weight}</h3>
+            {' - '}
+            <h3 className='uppercase'>Height: {pokemon.height}</h3>
+          </div>
           <div className="flex-col flex">
             {pokemon.stats.map((statObj: any) => {
               const statName = statObj.stat.name;
